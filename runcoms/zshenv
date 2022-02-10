@@ -9,3 +9,59 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+. "$HOME/.cargo/env"
+
+# =============================================
+# Add exports
+# =============================================
+
+# add erl shell history
+export ERL_AFLAGS="-kernel shell_history enabled"
+# for node version manager
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# default terminal
+export TERMINAL="/usr/bin/kitty"
+# support inputting gpg key when sshing for git
+export GPG_TTY=$(tty)
+# export fzf commands and options
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --ansi'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --no-ignore --color=always --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# xterm for kitty
+if [[ ! "$TMUX" = "" && "$TERM" = "screen" ]]; then export TERM=xterm-kitty; fi
+# build erlang docs always
+export KERL_BUILD_DOCS="yes"
+export KERL_INSTALL_MANPAGES="yes"
+# home for xinit
+export XDG_CONFIG_HOME="$HOME/.config"
+# export chromium for something I don't remember anymore (probably selenium?)
+export CHROME_EXECUTABLE=/usr/bin/chromium
+# exports for mangohud
+export MANGOHUD_CONFIG=cpu_temp,gpu_temp,position=top-left,height=500,font_size=32
+# exports for zk note taking
+export ZK_NOTEBOOK_DIR="$HOME/syncthing/zk"
+export ZK_EDITOR=/usr/bin/nvim
+
+# =============================================
+# Add things to PATH
+# =============================================
+
+# add bin to path
+export PATH="$HOME/.bin:$PATH"
+# add cargo to path
+export PATH="$HOME/.cargo/bin:$PATH"
+# add pyenv to path
+export PATH="$HOME/.pyenv/bin:$PATH"
+# add otp path
+export PATH="$PATH:$HOME/.asdf/installs/erlang/22.1/bin"
+# add erlang_ls to path
+export PATH="$HOME/.bin/erlang_ls/_build/default/bin:$PATH"
+# add erlfmt to path
+export PATH="$HOME/.bin/erlfmt/_build/release/bin:$PATH"
+# add elixirls to path
+export PATH="$HOME/.bin/elixirls/:$PATH"
+# add local bin to path
+export PATH="$HOME/.local/bin:$PATH"
+# export solana
+export PATH="$HOME/.local/share/solana/install/releases/1.7.0/solana-release/bin:$PATH"

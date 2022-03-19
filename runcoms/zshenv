@@ -21,7 +21,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 # default terminal
-export TERMINAL="/usr/bin/kitty"
+export TERMINAL="/usr/bin/wezterm"
 # support inputting gpg key when sshing for git
 export GPG_TTY=$(tty)
 # export fzf commands and options
@@ -29,7 +29,7 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --ansi'
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --no-ignore --color=always --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # xterm for kitty
-if [[ ! "$TMUX" = "" && "$TERM" = "screen" ]]; then export TERM=xterm-kitty; fi
+# if [[ ! "$TMUX" = "" && "$TERM" = "screen" ]]; then export TERM=xterm-kitty; fi
 # build erlang docs always
 export KERL_BUILD_DOCS="yes"
 export KERL_INSTALL_MANPAGES="yes"
